@@ -3,9 +3,9 @@ import 'date_input.dart';
 import 'display_text.dart';
 import 'entry.dart';
 import 'primary_button.dart';
-import '../theme.dart';
+import '../../theme.dart';
 
-import 'home.dart';
+import '../home.dart';
 
 class NewEntry extends StatefulWidget {
   const NewEntry({super.key,});

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grimorio/controller/book_controller.dart';
 import 'package:grimorio/models/google_book.dart';
 import 'date_input.dart';
 import 'display_text.dart';
@@ -22,6 +23,7 @@ class _NewEntryState extends State<NewEntry> {
   final TextEditingController initialDateController = TextEditingController();
   final TextEditingController finalDateController = TextEditingController();
   final TextEditingController commentsController = TextEditingController();
+  final BookController bookController = BookController();
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +85,7 @@ class _NewEntryState extends State<NewEntry> {
                                   text: "Adicionar",
                                   onTap: () {
                                     // Needs add book logic
-
+                                    bookController.addBook(widget.googleBook,initialDateController.text, finalDateController.text, commentsController.text);
                                     Navigator.pushAndRemoveUntil(
                                       context,
                                       MaterialPageRoute(

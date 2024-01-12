@@ -157,18 +157,18 @@ class _BookDetailsState extends State<BookDetails> {
                       icon: Icons.edit,
                       text: "Editar",
                       onTap: () {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => EditDetails(
-                        //               book: "book",
-                        //             ))).then((value) {
-                        //   setState(() {
-                        //     if (value != null) {
-                        //       "Update book";
-                        //     }
-                        //   });
-                        // });
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => EditDetails(
+                                      personalBook: widget.personalBook,
+                                    ))).then((value) {
+                          setState(() {
+                            if (value != null) {
+                              widget.personalBook = value;
+                            }
+                          });
+                        });
                       },
                     ),
                   ),

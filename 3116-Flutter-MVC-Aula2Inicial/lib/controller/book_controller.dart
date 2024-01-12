@@ -16,4 +16,8 @@ class BookController{
   Future<List<PersonalBook>> getBooks(){
     return personalBookDatabase.findAll(); 
   }
+
+  void updateBook(PersonalBook personalBook){
+    personalBookDatabase.save(personalBook);
+  }
 }

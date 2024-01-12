@@ -42,9 +42,9 @@ class _SearchBooksState extends State<SearchBooks> {
                   child: TextFormField(
                     onChanged: (value){
                       // Populate list of books from API
-                      // setState(() {
-                      //   booksList = googleBooksService.searchBooks(value);
-                      // });
+                      setState(() {
+                        booksList = googleBooksService.searchBooks(value);
+                      });
                     },
                     decoration: InputDecorationProperties.newInputDecoration("Procure por título/autor(a)", "Busca", const Icon(Icons.search)),
                   ),
@@ -164,7 +164,7 @@ class _BooksList extends StatelessWidget {
                       ),
                     );
                   },
-                  child: Entry(googleBook: snapshot.data![index]),
+                  child: Entry(book: snapshot.data![index]),
                 ),
                 itemCount: snapshot.data!.length,
               );

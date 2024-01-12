@@ -56,7 +56,7 @@ class _EditDetailsState extends State<EditDetails> {
                   width: 244,
                   child: Column(
                     children: <Widget>[
-                      Entry(googleBook: widget.personalBook.googleBook),
+                      Entry(book: widget.personalBook.googleBook),
                       Form(
                         key: _formKey,
                         child: Column(

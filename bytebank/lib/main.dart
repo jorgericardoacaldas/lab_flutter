@@ -58,18 +58,23 @@ final TextEditingController _controllerCampoValor = TextEditingController();
 }
 
 class ListaTransferencias extends StatelessWidget {
+
+  final List<Transferencia> _transferencias = [];
+
   @override
   Widget build(BuildContext context) {
+    _transferencias.add(Transferencia(100.0, 1111));
     return Scaffold(
       appBar: AppBar(
         title: Text('Transferências'),
       ),
-      body: Column(
-        children: <Widget>[
-          ItemTransferencia(Transferencia(100.0, 1000)),
-          ItemTransferencia(Transferencia(200.0, 2000)),
-          ItemTransferencia(Transferencia(300.0, 3000)),
-        ],
+      body: ListView.builder(
+        padding: const EdgeInsets.all(8),
+        itemCount: _transferencias.length,
+        itemBuilder: (BuildContext context, int index) {
+          final transferencia =  _transferencias[index];
+          return ItemTransferencia(transferencia);
+        }
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {  
@@ -77,7 +82,7 @@ class ListaTransferencias extends StatelessWidget {
             return FormularioTransferencia();
           }));
           future.then((transferenciaRecebida) {
-            debugPrint('$transferenciaRecebida');
+            _transferencias.add(transferenciaRecebida);
           });
         },
         child: Icon(Icons.add),

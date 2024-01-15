@@ -57,35 +57,47 @@ final TextEditingController _controllerCampoValor = TextEditingController();
   }
 }
 
-class ListaTransferencias extends StatelessWidget {
+class ListaTransferencias extends StatefulWidget {
 
   final List<Transferencia> _transferencias = [];
 
   @override
+  
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return ListaTransferenciasState();
+  }
+}
+
+class ListaTransferenciasState extends State<ListaTransferencias>{
+
+@override
   Widget build(BuildContext context) {
-    _transferencias.add(Transferencia(100.0, 1111));
     return Scaffold(
       appBar: AppBar(
         title: Text('Transferências'),
       ),
       body: ListView.builder(
         padding: const EdgeInsets.all(8),
-        itemCount: _transferencias.length,
+        itemCount: widget._transferencias.length,
         itemBuilder: (BuildContext context, int index) {
-          final transferencia =  _transferencias[index];
+          final transferencia =  widget._transferencias[index];
           return ItemTransferencia(transferencia);
         }
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {  
-            final Future future =  Navigator.push(context, MaterialPageRoute(builder: (context){
+            final Future<Transferencia?> future =  Navigator.push(context, MaterialPageRoute(builder: (context){
             return FormularioTransferencia();
           }));
           future.then((transferenciaRecebida) {
-            _transferencias.add(transferenciaRecebida);
+            setState(() {
+              widget._transferencias.add(transferenciaRecebida!);  
+            });
+            
           });
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
@@ -102,8 +114,8 @@ class ItemTransferencia extends StatelessWidget {
     return Card(
         child: ListTile(
       leading: Icon(Icons.monetization_on),
-      title: Text(_transferencia.valor.toString()),
-      subtitle: Text(_transferencia.numeroConta.toString()),
+      title: Text(_transferencia.numeroConta.toString()),
+      subtitle: Text(_transferencia.valor.toString()),
     ));
   }
 }

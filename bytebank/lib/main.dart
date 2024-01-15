@@ -1,36 +1,80 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MaterialApp(
-  home: Scaffold(
-    appBar: AppBar(title: Text('Transferências'),),
-    body: ListaTransferencias(),
-    floatingActionButton: FloatingActionButton(
-  onPressed: () { },
-      child: Icon(Icons.add),
-    ),
-  ),
-));
+void main() => runApp(BytebankApp());
 
-class ListaTransferencias extends StatelessWidget{
+class BytebankApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: FormularioTransferencia(),
+      ),
+    );
+  }
+}
+
+class FormularioTransferencia extends StatelessWidget {
+
+  final TextEditingController _controllerCampoNumeroConta = TextEditingController();
+final TextEditingController _controllerCampoValor = TextEditingController();
 
   @override
-  Widget build(BuildContext context){
-    return Column(
-      children: <Widget> [
-        ItemTransferencia(Transferencia(100.00, 1000)),
-        ItemTransferencia(Transferencia(100.00, 1000)),
-        ItemTransferencia(Transferencia(100.00, 1000)),
-        ItemTransferencia(Transferencia(100.00, 1000)),
-        ItemTransferencia(Transferencia(100.00, 1000)),
-        ItemTransferencia(Transferencia(100.00, 1000)),
-         Card(
-        child: ListTile(
-          leading: Icon(Icons.monetization_on),
-          title: Text('200.0'),
-          subtitle: Text('1000'),
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Criando Transferência'),),
+        body: Column(
+          children: <Widget>[
+            Editor(controlador: _controllerCampoNumeroConta, rotulo: 'Numero da Conta', dica: '0000'),
+            Editor(controlador: _controllerCampoValor, rotulo: 'Valor', dica: '10.00', icon: Icons.monetization_on),
+            ElevatedButton(
+              onPressed: () {
+                validationTransfer(context);
+              },
+              child: Text('Confirmar'),
+            )
+          ],
+        ));
+  }
+
+  void validationTransfer(BuildContext context) {
+    final int? numeroConta = int.tryParse(_controllerCampoNumeroConta.text);
+    final double? valor = double.tryParse(_controllerCampoValor.text);
+    if (numeroConta != null && valor != null){
+      final _transferenciaCriada = Transferencia(valor, numeroConta);
+      
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content:Text('$_transferenciaCriada'),
+          action: SnackBarAction(
+            label: 'Action',
+            onPressed: () {
+              // Code to execute.
+            },
+          ),
         ),
+      );               
+    }
+  }
+}
+
+class ListaTransferencias extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Transferências'),
       ),
-      ],
+      body: Column(
+        children: <Widget>[
+          ItemTransferencia(Transferencia(100.0, 1000)),
+          ItemTransferencia(Transferencia(200.0, 2000)),
+          ItemTransferencia(Transferencia(300.0, 3000)),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {  },
+        child: Icon(Icons.add),
+      ),
     );
   }
 }
@@ -57,4 +101,37 @@ class Transferencia {
   final int numeroConta;
 
   Transferencia(this.valor, this.numeroConta);
+
+  String toString(){
+    return 'Tranferencia{valor: $valor numeroConta $numeroConta}';
+  }
+}
+
+class Editor extends StatelessWidget {
+
+  final TextEditingController controlador;
+  final String rotulo;
+  final String dica;
+  final IconData ?icon;
+
+  Editor({required this.controlador, required this.rotulo, required this.dica, this.icon});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextField(
+                controller: controlador,
+                style: TextStyle(
+                  fontSize: 24.0
+                ),
+                decoration: InputDecoration(
+                  icon: Icon(icon),
+                  labelText: rotulo,
+                  hintText: dica
+                ),
+                keyboardType: TextInputType.number,
+              ),
+            );
+  }
 }

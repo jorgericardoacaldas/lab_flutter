@@ -6,26 +6,35 @@ class BytebankApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        body: ListaTransferencias(),
-      ),
+      theme: ThemeData( colorScheme: ColorScheme.fromSwatch( primarySwatch: Colors.green, ).copyWith( secondary: Colors.blueAccent[700], ), buttonTheme: ButtonThemeData( buttonColor: Colors.blueAccent[700], textTheme: ButtonTextTheme.primary ), ),
+      home: ListaTransferencias(),
+      
     );
   }
 }
 
-class FormularioTransferencia extends StatelessWidget {
+class FormularioTransferencia extends StatefulWidget {
 
   final TextEditingController _controllerCampoNumeroConta = TextEditingController();
 final TextEditingController _controllerCampoValor = TextEditingController();
+  
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return FormularioTransferenciaState();
+  }
+}
 
+class FormularioTransferenciaState extends State<FormularioTransferencia>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Criando Transferência'),),
-        body: Column(
+        body: SingleChildScrollView(
+          child: Column(
           children: <Widget>[
-            Editor(controlador: _controllerCampoNumeroConta, rotulo: 'Numero da Conta', dica: '0000'),
-            Editor(controlador: _controllerCampoValor, rotulo: 'Valor', dica: '10.00', icon: Icons.monetization_on),
+            Editor(controlador: widget._controllerCampoNumeroConta, rotulo: 'Numero da Conta', dica: '0000'),
+            Editor(controlador: widget._controllerCampoValor, rotulo: 'Valor', dica: '10.00', icon: Icons.monetization_on),
             ElevatedButton(
               onPressed: () {
                 validationTransfer(context);
@@ -33,12 +42,13 @@ final TextEditingController _controllerCampoValor = TextEditingController();
               child: Text('Confirmar'),
             )
           ],
+          ),
         ));
   }
 
   void validationTransfer(BuildContext context) {
-    final int? numeroConta = int.tryParse(_controllerCampoNumeroConta.text);
-    final double? valor = double.tryParse(_controllerCampoValor.text);
+    final int? numeroConta = int.tryParse(widget._controllerCampoNumeroConta.text);
+    final double? valor = double.tryParse(widget._controllerCampoValor.text);
     if (numeroConta != null && valor != null){
       final _transferenciaCriada = Transferencia(valor, numeroConta);
       Navigator.pop(context, _transferenciaCriada);
@@ -92,7 +102,10 @@ class ListaTransferenciasState extends State<ListaTransferencias>{
           }));
           future.then((transferenciaRecebida) {
             setState(() {
-              widget._transferencias.add(transferenciaRecebida!);  
+              if (transferenciaRecebida?.numeroConta != null && transferenciaRecebida?.valor != null){
+                widget._transferencias.add(transferenciaRecebida!);  
+              }
+              
             });
             
           });

@@ -19,72 +19,79 @@ class Dashboard extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: GestureDetector(
-              onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => ContactsList()));
-              },
-              child: Container(
-                padding: EdgeInsets.all(8.0),
-                height: 100,
-                width: 150,
-                color: Theme.of(context).primaryColor,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Icon(
-                      Icons.people,
-                      color: Colors.white,
-                      size: 24.0,
-                    ),
-                    Text(
-                      'Contacts',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16.0,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
+            // child: 
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                GestureDetector(
-                  onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ListaTransferencias()));
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(8.0),
-                    height: 100,
-                    width: 150,
-                    color: Theme.of(context).primaryColor,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Icon(
-                          Icons.people,
-                          color: Colors.white,
-                          size: 24.0,
-                        ),
-                        Text(
-                          'Extrato',
-                          style: TextStyle(
+          Row(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Expanded(
+                  child: GestureDetector(
+                    onTap: (){
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => ContactsList()));
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(8.0),
+                      height: 100,
+                      width: 150,
+                      color: Theme.of(context).primaryColor,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Icon(
+                            Icons.people,
                             color: Colors.white,
-                            fontSize: 16.0,
+                            size: 24.0,
                           ),
-                        )
-                      ],
+                          Text(
+                            'Contatos',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.0,
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Expanded(
+                  child: GestureDetector(
+                    onTap: (){
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => ListaTransferencias()));
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(8.0),
+                      height: 100,
+                      width: 150,
+                      color: Theme.of(context).primaryColor,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Icon(
+                            Icons.people,
+                            color: Colors.white,
+                            size: 24.0,
+                          ),
+                          Text(
+                            'Extrato',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.0,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           )
         ],
       ),

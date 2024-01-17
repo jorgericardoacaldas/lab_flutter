@@ -17,6 +17,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-
-assets:
-- assets\bytebank_logo.png
+  
+  assets:
+    - assets/images/bytebank_logo.png # Mac

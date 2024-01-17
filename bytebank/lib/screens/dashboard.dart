@@ -15,16 +15,12 @@ class Dashboard extends StatelessWidget {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Image.asset('/Users/catalog/Documents/flutter_examples/lab/lab_flutter/bytebank/assets/bytebank_logo.png'),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            // child: 
+            child: Image.asset('assets/images/bytebank_logo.png'),
           ),
           Row(
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.fromLTRB(10, 0, 60, 160),
                 child: Expanded(
                   child: GestureDetector(
                     onTap: (){
@@ -58,7 +54,7 @@ class Dashboard extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.fromLTRB(10, 0, 0, 160),
                 child: Expanded(
                   child: GestureDetector(
                     onTap: (){

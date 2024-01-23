@@ -36,7 +36,7 @@ class Dashboard extends StatelessWidget {
                         padding: EdgeInsets.all(8.0),
                         height: 100,
                         width: 150,
-                        child: Column(
+                        child: const Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -46,7 +46,7 @@ class Dashboard extends StatelessWidget {
                               size: 24.0,
                             ),
                             Text(
-                              'Contacts',
+                              'Contatos',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16.0,
@@ -61,7 +61,7 @@ class Dashboard extends StatelessWidget {
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(10, 0, 0, 160),
+                  padding: EdgeInsets.fromLTRB(50, 0, 10, 160),
                   child: Material(
                     color: Theme.of(context).primaryColor,
                     child: InkWell(
@@ -76,12 +76,12 @@ class Dashboard extends StatelessWidget {
                         padding: EdgeInsets.all(8.0),
                         height: 100,
                         width: 150,
-                        child: Column(
+                        child: const Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Icon(
-                              Icons.people,
+                              Icons.receipt_long,
                               color: Colors.white,
                               size: 24.0,
                             ),

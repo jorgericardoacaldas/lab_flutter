@@ -1,5 +1,5 @@
 import 'package:bytebank/models/transferencia.dart';
-import 'package:bytebank/screens/formulario_transferencia.dart';
+import 'package:bytebank/screens/transferencia/formulario_transferencia.dart';
 import 'package:flutter/material.dart';
 
 class ListaTransferencias extends StatefulWidget {

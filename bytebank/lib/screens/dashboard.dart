@@ -1,5 +1,5 @@
-import 'package:bytebank/screens/contacts.dart';
-import 'package:bytebank/screens/lista_transferencia.dart';
+import 'package:bytebank/screens/contatos/lista_contato.dart';
+import 'package:bytebank/screens/transferencia/lista_transferencia.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatelessWidget {
@@ -31,7 +31,7 @@ class Dashboard extends StatelessWidget {
                       height: 100,
                       width: 150,
                       color: Theme.of(context).primaryColor,
-                      child: Column(
+                      child: const Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
@@ -54,7 +54,7 @@ class Dashboard extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(10, 0, 0, 160),
+                padding: EdgeInsets.fromLTRB(50, 0, 0, 160),
                 child: Expanded(
                   child: GestureDetector(
                     onTap: (){
@@ -65,7 +65,7 @@ class Dashboard extends StatelessWidget {
                       height: 100,
                       width: 150,
                       color: Theme.of(context).primaryColor,
-                      child: Column(
+                      child: const Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[

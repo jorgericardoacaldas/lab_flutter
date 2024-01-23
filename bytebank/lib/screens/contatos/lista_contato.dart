@@ -1,5 +1,7 @@
 import 'package:bytebank/models/contato.dart';
-import 'package:bytebank/screens/lista_transferencia.dart';
+import 'package:bytebank/screens/contatos/formulario_contato.dart';
+import 'package:bytebank/screens/transferencia/formulario_transferencia.dart';
+import 'package:bytebank/screens/transferencia/lista_transferencia.dart';
 import 'package:flutter/material.dart';
 
 class ContactsList extends StatefulWidget {
@@ -30,9 +32,19 @@ class ContactsListState extends State<ContactsList>{
       ) ,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context){
-              return ListaTransferencias();
+
+          final Future<Contato?> future = Navigator.push(context, MaterialPageRoute(builder: (context){
+              return FormularioContato();
           }));
+          
+          future.then((contatoNew) {
+            setState(() {
+              if (contatoNew?.numeroConta != null && contatoNew?.nome != null){
+                widget._contatos.add(contatoNew!);  
+              }
+            });
+            
+          });
         },
         child: Icon(Icons.add),
       ),
